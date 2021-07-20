@@ -1,0 +1,19 @@
+!Job
+target: !Target
+  head: 2215b5ecbe8cc0590b8aeef02019edb98f8ecbed
+  email: weston.pace@gmail.com
+  branch: experiment/r-debug
+  remote: https://github.com/westonpace/arrow
+  version: 5.0.0.dev469
+  no_rc_version: 5.0.0.dev469
+  no_rc_semver_version: 5.0.0-dev469
+tasks:
+  test-r-rtools-35: !Task
+    ci: github
+    template: r/github.windows.rtools35.yml
+    artifacts: []
+    params: {}
+    branch: build-0-github-test-r-rtools-35
+    commit: ad0e8dd23cc3860b6ad9e415390c63a8bbe6605d
+params: {}
+branch: build-0
