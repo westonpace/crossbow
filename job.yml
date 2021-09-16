@@ -1,0 +1,23 @@
+!Job
+target: !Target
+  head: c6b5ee03b5064b53f3069e8717d38c24cba1cca0
+  email: weston.pace@gmail.com
+  branch: feature/ARROW-13542--c-compute-dataset-add-dataset-writenode-for
+  remote: https://github.com/westonpace/arrow.git
+  version: 6.0.0.dev264
+  no_rc_version: 6.0.0.dev264
+  no_rc_semver_version: 6.0.0-dev264
+tasks:
+  test-ubuntu-20.04-s3-limited-perms: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 20.04
+      image: ubuntu-python
+
+    branch: build-6-github-test-ubuntu-20.04-s3-limited-perms
+    commit: 19f1a885b87494179a68b020dfd17b9819757a99
+params: {}
+branch: build-6
