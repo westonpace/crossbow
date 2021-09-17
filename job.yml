@@ -1,0 +1,21 @@
+!Job
+target: !Target
+  head: 89c1d67802dca2ba1da86da60e21926bfbf360ff
+  email: weston.pace@gmail.com
+  branch: bugfix/ARROW-13685-cannot-write-to-s3-if-bucket-exists
+  remote: https://github.com/westonpace/arrow.git
+  version: 6.0.0.dev233
+  no_rc_version: 6.0.0.dev233
+  no_rc_semver_version: 6.0.0-dev233
+tasks:
+  test-conda-python-minio: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      image: conda-python-minio
+
+    branch: build-7-github-test-conda-python-minio
+    commit: db8f1964406174b894769160f945227ab9068b4e
+params: {}
+branch: build-7
