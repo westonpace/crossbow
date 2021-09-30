@@ -1,0 +1,21 @@
+!Job
+target: !Target
+  head: dd81a85b93eaffdb4b1cf74a8f05f17ab6617878
+  email: weston.pace@gmail.com
+  branch: skyhook
+  remote: https://github.com/uccross/skyhookdm-arrow.git
+  version: 6.0.0.dev416
+  no_rc_version: 6.0.0.dev416
+  no_rc_semver_version: 6.0.0-dev416
+tasks:
+  test-skyhook-integration: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      flags: -e ARROW_SKYHOOK=ON
+      image: ubuntu-cpp
+    branch: build-8-github-test-skyhook-integration
+    commit: 141d0804412c393060187d2edf2037eff7d62682
+params: {}
+branch: build-8
