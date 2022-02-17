@@ -1,0 +1,24 @@
+!Job
+target: !Target
+  head: 08304d996117d3bff0e87e9b27d35ba4c98e8088
+  email: weston.pace@gmail.com
+  branch: bugfix/ARROW-15700--engine-compilation-on-ubuntu-xbow
+  remote: https://github.com/westonpace/arrow
+  github_repo: westonpace/arrow
+  version: 8.0.0.dev82
+  no_rc_version: 8.0.0.dev82
+  no_rc_semver_version: 8.0.0-dev82
+tasks:
+  test-ubuntu-18.04-cpp: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '18.04'
+      flags: -e ARROW_ENGINE=OFF
+      image: ubuntu-cpp
+    branch: build-11-github-test-ubuntu-18.04-cpp
+    commit: acd8789d67b0433d53f8e1adcc3d51dc9a643705
+params: {}
+branch: build-11
