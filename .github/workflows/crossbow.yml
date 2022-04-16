@@ -103,3 +103,9 @@ jobs:
           name: test-output
           path: arrow-tests/testthat.Rout*
         if: always()
+      - name: Save the libparquet output
+        uses: actions/upload-artifact@v2
+        with:
+          name: libparquet.a
+          path: /Users/runner/work/crossbow/crossbow/arrow/r/libarrow/arrow-7.0.0.9000/lib/libparquet.a
+        if: always()
