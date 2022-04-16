@@ -19,10 +19,7 @@
 # NOTE: must set "Crossbow" as name to have the badge links working in the
 # github comment reports!
 name: Crossbow
-on:
-  push:
-    branches:
-      - "*-github-*"
+on: push
 
 
 jobs:
