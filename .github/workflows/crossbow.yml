@@ -33,7 +33,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macOS-latest, ubuntu-20.04]
+        os: [macOS-latest]
 
     steps:
       - name: Checkout Arrow
@@ -94,7 +94,7 @@ jobs:
           echo "CXX11=$(brew --prefix llvm)/bin/clang++" >> ~/.R/Makevars
           R CMD config CC
           R CMD config CXX11
-          R CMD INSTALL . --install-tests
+          R CMD INSTALL . --install-tests --no-test-load --no-staged-install --no-clean-on-error
       - name: Run the tests
         run: R -e 'if(tools::testInstalledPackage("arrow") != 0L) stop("There was a test failure.")'
       - name: Dump test logs
@@ -102,12 +102,6 @@ jobs:
           objdump -S /Users/runner/work/crossbow/crossbow/arrow/r/libarrow/arrow-7.0.0.9000/lib/libparquet.a > /Users/runner/work/crossbow/libparquet.a.S
           cat arrow-tests/testthat.Rout*
         if: failure()
-      - name: Save the test output
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-output
-          path: arrow-tests/testthat.Rout*
-        if: always()
       - name: Save the libparquet output
         uses: actions/upload-artifact@v2
         with:
