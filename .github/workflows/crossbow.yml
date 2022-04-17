@@ -101,10 +101,10 @@ jobs:
 #           run: R -e 'if(tools::testInstalledPackage("arrow") != 0L) stop("There was a test failure.")'
       - name: Dump test logs
         run: |
-#           objdump -S /Users/runner/work/crossbow/crossbow/arrow/r/libarrow/arrow-7.0.0.9000/lib/libparquet.a > /Users/runner/work/crossbow/libparquet.a.S
           objdump -S /Users/runner/work/crossbow/crossbow/arrow/r/libarrow/dist/src/parquet/CMakeFiles/parquet_objlib.dir/level_comparison.cc.o > /Users/runner/work/crossbow/level_comparison.cc.o.S
           objdump -S /Users/runner/work/crossbow/crossbow/arrow/r/libarrow/dist/src/parquet/CMakeFiles/parquet_objlib.dir/level_comparison_avx2.cc.o > /Users/runner/work/crossbow/level_comparison_avx2.cc.o.S
           cat arrow-tests/testthat.Rout*
+#           objdump -S /Users/runner/work/crossbow/crossbow/arrow/r/libarrow/arrow-7.0.0.9000/lib/libparquet.a > /Users/runner/work/crossbow/libparquet.a.S
         if: always()
       - name: Save the level_comparison_avx2 output
         uses: actions/upload-artifact@v2
