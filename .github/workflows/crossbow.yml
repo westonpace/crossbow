@@ -105,7 +105,7 @@ jobs:
           objdump -S /Users/runner/work/crossbow/crossbow/arrow/r/libarrow/dist/src/parquet/CMakeFiles/parquet_objlib.dir/level_comparison.cc.o > /Users/runner/work/crossbow/level_comparison.cc.o.S
           objdump -S /Users/runner/work/crossbow/crossbow/arrow/r/libarrow/dist/src/parquet/CMakeFiles/parquet_objlib.dir/level_comparison_avx2.cc.o > /Users/runner/work/crossbow/level_comparison_avx2.cc.o.S
           cat arrow-tests/testthat.Rout*
-        if: failure()
+        if: always()
       - name: Save the level_comparison_avx2 output
         uses: actions/upload-artifact@v2
         with:
