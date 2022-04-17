@@ -52,7 +52,6 @@ jobs:
           brew install openssl
           brew install thrift
           brew install boost
-          brew install re2
         if: contains(matrix.os, 'macOS')
       - name: Configure non-autobrew dependencies (linux)
         run: |
