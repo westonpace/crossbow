@@ -82,33 +82,41 @@ jobs:
         run: |
           cd arrow
           ./r/inst/build_arrow_static.sh
-          cd ..
-          cd arrow/r
-          export CC="$(brew --prefix llvm)/bin/clang"
-          export CXX="$(brew --prefix llvm)/bin/clang++"
-          echo "CC: ${CC}"
-          echo "CC: ${CXX}"
-          ${CC} --version
-          ${CXX} --version
-          mkdir -p ~/.R/
-          echo "CC=$(brew --prefix llvm)/bin/clang" >> ~/.R/Makevars
-          echo "CXX=$(brew --prefix llvm)/bin/clang++" >> ~/.R/Makevars
-          echo "CXX11=$(brew --prefix llvm)/bin/clang++" >> ~/.R/Makevars
-          R CMD config CC
-          R CMD config CXX11
-          R CMD INSTALL . --install-tests --no-test-load --no-staged-install --no-clean-on-error
-      - name: Run the tests
-        run: R -e 'if(tools::testInstalledPackage("arrow") != 0L) stop("There was a test failure.")'
+#           cd ..
+#           cd arrow/r
+#           export CC="$(brew --prefix llvm)/bin/clang"
+#           export CXX="$(brew --prefix llvm)/bin/clang++"
+#           echo "CC: ${CC}"
+#           echo "CC: ${CXX}"
+#           ${CC} --version
+#           ${CXX} --version
+#           mkdir -p ~/.R/
+#           echo "CC=$(brew --prefix llvm)/bin/clang" >> ~/.R/Makevars
+#           echo "CXX=$(brew --prefix llvm)/bin/clang++" >> ~/.R/Makevars
+#           echo "CXX11=$(brew --prefix llvm)/bin/clang++" >> ~/.R/Makevars
+#           R CMD config CC
+#           R CMD config CXX11
+#           R CMD INSTALL . --install-tests --no-test-load --no-staged-install --no-clean-on-error
+#         - name: Run the tests
+#           run: R -e 'if(tools::testInstalledPackage("arrow") != 0L) stop("There was a test failure.")'
       - name: Dump test logs
         run: |
           objdump -S /Users/runner/work/crossbow/crossbow/arrow/r/libarrow/arrow-7.0.0.9000/lib/libparquet.a > /Users/runner/work/crossbow/libparquet.a.S
+          objdump -S /Users/runner/work/crossbow/crossbow/arrow/r/libarrow/dist/src/parquet/CMakeFiles/parquet_objlib.dir/level_comparison.cc.o > /Users/runner/work/crossbow/level_comparison.cc.o.S
+          objdump -S /Users/runner/work/crossbow/crossbow/arrow/r/libarrow/dist/src/parquet/CMakeFiles/parquet_objlib.dir/level_comparison_avx2.cc.o > /Users/runner/work/crossbow/level_comparison_avx2.cc.o.S
           cat arrow-tests/testthat.Rout*
         if: failure()
-      - name: Save the libparquet output
+      - name: Save the level_comparison_avx2 output
         uses: actions/upload-artifact@v2
         with:
-          name: libparquet.a
-          path: /Users/runner/work/crossbow/crossbow/arrow/r/libarrow/arrow-7.0.0.9000/lib/libparquet.a
+          name: level_comparison_avx2.cc.o.S
+          path: /Users/runner/work/crossbow/level_comparison_avx2.cc.o.S
+        if: always()
+      - name: Save the level_comparison output
+        uses: actions/upload-artifact@v2
+        with:
+          name: level_comparison.cc.o.S
+          path: /Users/runner/work/crossbow/level_comparison.cc.o.S
         if: always()
       - name: Save the libparquet output
         uses: actions/upload-artifact@v2
