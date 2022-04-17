@@ -98,7 +98,9 @@ jobs:
       - name: Run the tests
         run: R -e 'if(tools::testInstalledPackage("arrow") != 0L) stop("There was a test failure.")'
       - name: Dump test logs
-        run: cat arrow-tests/testthat.Rout*
+        run: |
+          objdump -S /Users/runner/work/crossbow/crossbow/arrow/r/libarrow/arrow-7.0.0.9000/lib/libparquet.a > /Users/runner/work/crossbow/libparquet.a.S
+          cat arrow-tests/testthat.Rout*
         if: failure()
       - name: Save the test output
         uses: actions/upload-artifact@v2
@@ -111,4 +113,10 @@ jobs:
         with:
           name: libparquet.a
           path: /Users/runner/work/crossbow/crossbow/arrow/r/libarrow/arrow-7.0.0.9000/lib/libparquet.a
+        if: always()
+      - name: Save the libparquet output
+        uses: actions/upload-artifact@v2
+        with:
+          name: libparquet.a.S
+          path: /Users/runner/work/crossbow/libparquet.a.S
         if: always()
