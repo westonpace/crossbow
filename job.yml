@@ -1,0 +1,32 @@
+!Job
+target: !Target
+  head: 94ab63495d72621770f9dbaccc7a1e2a49e0aa4d
+  email: weston.pace@gmail.com
+  branch: refactor-r-window
+  remote: https://github.com/icexelloss/arrow.git
+  github_repo: icexelloss/arrow
+  version: 12.0.0.dev329
+  r_version: 11.0.0.100000329
+  no_rc_version: 12.0.0.dev329
+  no_rc_r_version: 11.0.0.100000329
+  default_branch:
+  - main
+  - master
+  no_rc_semver_version: 12.0.0-dev329
+  no_rc_snapshot_version: 12.0.0-SNAPSHOT
+tasks:
+  test-r-minimal-build: !Task
+    name: test-r-minimal-build
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: library
+      r_image: r-base
+      r_tag: latest
+      flags: -e LIBARROW_MINIMAL=TRUE
+
+    branch: build-14-azure-test-r-minimal-build
+    commit: 6067b310386942422f95529f397def0b5e621929
+params: {}
+branch: build-14
