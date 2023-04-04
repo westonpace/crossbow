@@ -1,0 +1,32 @@
+!Job
+target: !Target
+  head: 387989052976d5978f8a85d31b8f1b1c6c9942e8
+  email: weston.pace@gmail.com
+  branch: refactor-r-window
+  remote: https://github.com/westonpace/arrow.git
+  github_repo: westonpace/arrow
+  version: 12.0.0.dev334
+  r_version: 11.0.0.100000334
+  no_rc_version: 12.0.0.dev334
+  no_rc_r_version: 11.0.0.100000334
+  default_branch:
+  - main
+  - master
+  no_rc_semver_version: 12.0.0-dev334
+  no_rc_snapshot_version: 12.0.0-SNAPSHOT
+tasks:
+  test-r-minimal-build: !Task
+    name: test-r-minimal-build
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: library
+      r_image: r-base
+      r_tag: latest
+      flags: -e LIBARROW_MINIMAL=TRUE
+
+    branch: build-22-azure-test-r-minimal-build
+    commit: e007ef5d22af105745eb421b1e3a709713e9c1f7
+params: {}
+branch: build-22
