@@ -1,0 +1,29 @@
+!Job
+target: !Target
+  head: 893c9c12b2e6048f7333fe14fc0b178ef62ee28a
+  email: weston.pace@gmail.com
+  branch: experiment/fix-hdfs-nightly
+  remote: https://github.com/westonpace/arrow.git
+  github_repo: westonpace/arrow
+  version: 13.0.0.dev106
+  r_version: 12.0.0.100000106
+  no_rc_version: 13.0.0.dev106
+  no_rc_r_version: 12.0.0.100000106
+  no_rc_semver_version: 13.0.0-dev106
+  no_rc_snapshot_version: 13.0.0-SNAPSHOT
+tasks:
+  test-conda-python-3.10-hdfs-3.2.1: !Task
+    name: test-conda-python-3.10-hdfs-3.2.1
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.10'
+        HDFS: 3.2.1
+      image: conda-python-hdfs
+
+    branch: build-25-github-test-conda-python-3.10-hdfs-3.2.1
+    commit: 4da4d95d04008175fddc87ff82873be2bcb03d11
+params: {}
+branch: build-25
