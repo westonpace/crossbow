@@ -1,0 +1,24 @@
+!Job
+target: !Target
+  head: 6ac68e2ece788aa737e538e552eb027a4dc49c8b
+  email: weston.pace@gmail.com
+  branch: experiment/vcpkg-error
+  remote: https://github.com/westonpace/arrow.git
+  github_repo: westonpace/arrow
+  version: 13.0.0.dev17
+  r_version: 12.0.0
+  no_rc_version: 13.0.0.dev17
+  no_rc_r_version: 12.0.0
+  no_rc_semver_version: 13.0.0-dev17
+  no_rc_snapshot_version: 13.0.0-SNAPSHOT
+tasks:
+  test-build-vcpkg-win: !Task
+    name: test-build-vcpkg-win
+    ci: github
+    template: vcpkg-tests/github.windows.yml
+    artifacts: []
+    params: {}
+    branch: build-27-github-test-build-vcpkg-win
+    commit: 056fbd11a621b77853a552f0ba97ffb415f52ae1
+params: {}
+branch: build-27
