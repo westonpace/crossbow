@@ -1,0 +1,28 @@
+!Job
+target: !Target
+  head: 6501931fa50a77d126f4fb8d7a7f22914af72a14
+  email: weston.pace@gmail.com
+  branch: update-absl
+  remote: https://github.com/assignUser/arrow.git
+  github_repo: assignUser/arrow
+  version: 13.0.0.dev641
+  r_version: 12.0.1.100000641
+  no_rc_version: 13.0.0.dev641
+  no_rc_r_version: 12.0.1.100000641
+  no_rc_semver_version: 13.0.0-dev641
+  no_rc_snapshot_version: 13.0.0-SNAPSHOT
+tasks:
+  test-fedora-35-cpp: !Task
+    name: test-fedora-35-cpp
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        FEDORA: 35
+      image: fedora-cpp
+
+    branch: build-31-github-test-fedora-35-cpp
+    commit: 9d9950dcecdc009b6636006eb2da89c43c3c31fc
+params: {}
+branch: build-31
